@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project_management_tool</title>
+    <meta charset="utf-8" />
+    <link href="css/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <h1></h1>
+    <div class="row">
+        <div class="col-1">
+            <input type="text" placeholder="Enter New Project" id="projectField" name="project" required>
+            <button type="button" id="projectCreateBtn" class="projectCreatebtn">Create</button>
+        </div>
+        <div class="col-2">
+            <div class="middleTitle">
+                <h2 id="title"> Project Management Tool </h2>
+            </div>
+        </div>
+        <div class="col-3">
+            <input type="text" placeholder="Enter New Username" id="userField" name="username" required>
+            <button type="sbutton" id="userCreateBtn" class="userCreatebtn">Create</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-4">
+            <form action="" method="get" id="form2">
+                <select id="selectProject">
+                    <option value="0" disabled selected>--Select your Project--</option>
+                </select>
+            </form>
+        </div>
+        <div class=" col-5">
+            <form action="index.html" method="get" id="form2">
+                <select id="selectUser">
+                    <option value="0" disabled selected>--Select your User--</option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <div>
+        <h1></h1>
+        <h1></h1>
+    </div>
+    <div class="row">
+        <div class=" col-6"> 
+          <div class="dropdown">
+            <div id="myDropdown"  class="dropdown-content">-Manage Issues 
+               <button id="showIssueCreate" class="issueManageBtn">Create</button>
+               <button id="showIssueEdit" class="issueManageBtn">Edit</button>
+               <button id="showIssueMove" class="issueManageBtn">Move</button>
+               <button id="howIssueDelete" class="issueManageBtn">Delete</button>
+            </div>
+          </div>  
+        </div>
+        <div class=" col-7">
+            <ul id="sprintMenu"  class=" sprintMenu">
+                <li class="addSprint" id="addNewSprint">New Sprint</li>
+            </ul>
+            <input class="sprintInput" type="text" placeholder="Enter New Sprint" id="sprintField" name="sprint" required>
+            <button type="button" id="sprintCreateBtn" class="sprintCreatebtn">Create</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="listColumn" class=" col-8">
+            <ul class="listTree" id="listTree">
+                --Project overview--
+
+            </ul>
+        </div>
+        <div class=" col-10">
+            <table id="issueTable" style="width:100%;">
+                <tr>
+                    <th class=" issueCol">Issue</th>
+                    <th class=" subIssueCol">Sub-Issue</th>
+                    <th class=" typeCol">Type</th>
+                    <th class=" statusCol">Status</th>
+                    <th class=" descCol">Description</th>
+                    <th class=" commCol">Comments</th>
+                    <th class=" asgCol">Assigned</th>
+                    <th class=" crtCol">Created By</th>
+                    <th class=" updCol">Updated</th>
+                    <th  style="display:none" class="issueColumnID"></th>
+                </tr>
+                <tr onclick="manageIssue(this)">
+                    <td class=" issueCol">&nbsp;</td>
+                    <td class=" subIssueCol">&nbsp;</td>
+                    <td class=" typeCol">&nbsp;</td>
+                    <td class=" statusCol">&nbsp;</td>
+                    <td class=" descCol">&nbsp;</td>
+                    <td class=" commCol">&nbsp;</td>
+                    <td class=" asgCol">&nbsp;</td>
+                    <td class=" crtCol">&nbsp;</td>
+                    <td class=" crtCol">&nbsp;</td>
+                    <td style="display:none" class="issueColumnID"></td>
+                </tr>
+            </table>
+            <p>Click to any row to manage issues</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-6">
+        </div>
+        <div class=" col-9" id="newIssueContainer">
+            <input class="issueName" type="text" placeholder="Enter Issue name" id="isseuField" required>
+            <select class="selectIssueType" id="selectIssueType">
+                <option value="0" disabled selected>-Type-</option>
+                <option value="1">Feature</option>
+                <option value="2">Bug</option>
+                <option value="3">Task</option>
+            </select>
+            <select class="selectAssigne" id="selectIssueAssigne">
+                <option value="0" disabled selected>-Assigned-</option>
+            </select>
+            <select class="selectParentIssue" id="selectParentIssue">
+                <option value="0" disabled selected>-Add to Parent Issue(optional)-</option>
+            </select>
+            <textarea id="newIsseuDescription" placeholder="Issue description" rows="2" cols="25"></textarea>
+            <textarea id="newComment" placeholder="Your Comment" rows="2" cols="25"></textarea>
+            <button type="button" id="addIssue" class="issueCrtBtn">Create</button>
+        </div>
+    </div>    
+   
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,301 @@
+* {
+    box-sizing: border-box;
+    background-color: #b3ffff;
+}
+
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding-top: 2px;    
+}
+
+.col-1 {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    justify-content: center;
+}
+
+
+.col-2 {
+    width: 60%;
+    text-align: center;
+    padding-bottom: 0;
+    margin-top: 20px;
+}
+
+
+.col-3 {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    justify-content: center;
+}
+
+.col-4 {
+    width: 20%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.col-5 {
+    width: 20%;
+    float: right;
+    display: flex;
+    justify-content: center;
+}
+
+.col-6 {
+    width: 15%;
+    padding-right: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.col-7 {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.col-8 {
+    width: 15%;
+    display: flex;
+    margin-top: 1%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.col-9 {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    visibility: hidden;
+}
+.col-10 {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+.header {
+    background-color: #9933cc;
+    color: #ffffff;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 10px 16px;
+        text-decoration: none;
+    }
+
+        li a:hover:not(.active) {
+            background-color: #4dffff;
+            
+        }
+
+.active {
+    background-color: #4CAF50;
+}
+
+.addSprint {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+    background-color: #1d8900;
+}
+
+/* Full-width input fields */
+input[type=text] {
+    font-size: 16px;
+    font-weight: 100;
+    height: 30px;
+    width: 200px;
+    background: #f1f1f1;
+}
+
+    input[type=text]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+
+.issueCrtBtn {
+    margin-left: 30px;
+}
+
+.sprintMenu {
+    margin-bottom: 0;
+}
+
+
+.sprintInput {
+    margin-left: 0;
+    margin-top: 22px;
+    visibility: hidden;
+}
+
+.sprintCreatebtn {
+    margin-left: 0px;
+    margin-top: 22px;
+    visibility: hidden;
+}
+
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+    margin-left: 10px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #00b33c;
+    color: white;
+    padding: 15px,15px,15px,15px;
+    height: 30px;
+    opacity: 0.9;
+}
+
+    button:hover {
+        opacity: 1;
+    }
+
+.selectIssueType {
+    width: 100px;
+    height: 30px;
+    padding: 0;
+    font-size: 13px;
+}
+
+.selectAssigne {
+    height: 30px;
+    padding: 0;
+    font-size: 13px;
+}
+
+.selectParentIssue {
+    height: 30px;
+    padding: 0;
+    font-size: 13px;
+}
+
+.issueName {
+    margin-bottom: 2px;
+}
+
+
+select {
+    padding: 8px;
+    margin-bottom: 7px;
+    width: 240px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    font-size: 20px;
+}
+
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    white-space:nowrap;
+}
+
+th {
+    text-align: center;
+    padding: 8px;
+    border: solid;
+    border-color: darkturquoise;
+}
+
+td {
+    text-align: left;
+    padding: 8px;    
+}
+
+.issueColumnID {
+    text-align: center;
+    vertical-align: middle;
+    border-right:none;
+    border-top: none;
+    border-bottom: none;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+
+
+.listTree {
+    padding-left: 2%;
+}
+
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    visibility: hidden;
+    position: absolute;
+    min-width: 126px;
+    box-shadow: 0px, 0px, 10px, 5px rgba(0,0,0,0.2);
+}
+
+.dropdown button {
+    width: 60px;
+}
+
+.show {
+    display: block;
+}
+
+
+
+
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .a {
+        width: 40%;
+    }
+}
