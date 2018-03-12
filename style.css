@@ -1,12 +1,31 @@
 * {
     box-sizing: border-box;
-    background-color: #b3ffff;
+    background-color: #f9fcfc;
 }
 
+body{
+    width:100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.contentPane{
+    width: 1024px;
+    height: 768px;
+    align-self: center;
+    margin:auto;
+    border: solid;
+    
+}
 html {
     font-family: "Lucida Sans", sans-serif;
+    font-size: 15px;
+}   
+.row{
+ display: flex;
+ flex-direction: row;
 }
-
 .row::after {
     content: "";
     clear: both;
@@ -19,60 +38,65 @@ html {
 }
 
 .col-1 {
-    width: 20%;
+    width: 30%;
     display: flex;
     flex-direction: row;
     margin-top: 2%;
     justify-content: center;
+    align-items: flex-end;
 }
 
 
 .col-2 {
-    width: 60%;
+    width: 40%;
     text-align: center;
     padding-bottom: 0;
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 
 .col-3 {
-    width: 20%;
+    width: 30%;
     display: flex;
     flex-direction: row;
     margin-top: 2%;
     justify-content: center;
+    align-items: flex-end;
 }
 
 .col-4 {
-    width: 20%;
+    width: 30%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
 
 .col-5 {
-    width: 20%;
+    width: 30%;
     float: right;
     display: flex;
     justify-content: center;
 }
 
 .col-6 {
-    width: 15%;
-    padding-right: 30px;
+    width: 200px; 
     display: flex;
     justify-content: center;
 }
 
 .col-7 {
-    width: 80%;
+    width: 800px;    
+    padding: 30px 0px 0px 0px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    overflow-x: auto;
 }
 
 .col-8 {
-    width: 15%;
+    width: 200px;
     display: flex;
     margin-top: 1%;
     justify-content: center;
@@ -80,21 +104,52 @@ html {
 }
 
 .col-9 {
-    width: 80%;
+    width: 640px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     visibility: hidden;
+    position: absolute;
+    margin: 100px 20px 0px 60px
 }
 .col-10 {
-    width: 80%;
-    display: flex;
+    width: 800px;
+    display: flex;    
     flex-direction: column;
     justify-content: flex-start;
 }
 
+.col-11 {
+    width: 5%;
+    
+}
+.col-12 {
+    width: 5%;
+    
+}
 
+.col-13 {
+    width: 2%;
+    
+}
+.col-14{
+    display: inline-block;
+}
+.col-15{
+    display: block;
+    align-items: center;
+    padding-left: 5px;
+}
+
+textarea{
+  margin-bottom: 3px;  
+}
+
+.middleTitle{
+ box-shadow:5px 10px #0070cb;
+ margin-left: 5%
+}
 .header {
     background-color: #9933cc;
     color: #ffffff;
@@ -103,8 +158,7 @@ html {
 
 ul {
     list-style-type: none;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0 10px 0 10px;
     padding: 0;
     overflow: hidden;
 }
@@ -117,35 +171,36 @@ li {
         display: block;
         color: black;
         text-align: center;
-        padding: 10px 16px;
+        padding: 5px 10px;
         text-decoration: none;
     }
 
         li a:hover:not(.active) {
-            background-color: #4dffff;
+            background-color: #5eade4;
             
         }
 
 .active {
-    background-color: #4CAF50;
+    background-color: #006398;
 }
 
 .addSprint {
     display: block;
-    color: black;
+    color: whitesmoke;
     text-align: center;
-    padding: 10px 16px;
+    padding: 5px 10px;
     text-decoration: none;
-    background-color: #1d8900;
+    background-color: #00396a;
 }
 
 /* Full-width input fields */
 input[type=text] {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 100;
-    height: 30px;
-    width: 200px;
+    height: 25px;
+    width: 150px;
     background: #f1f1f1;
+    margin: 4px 0px 0px 2px;  
 }
 
     input[type=text]:focus {
@@ -153,27 +208,28 @@ input[type=text] {
         outline: none;
     }
 
-
-.issueCrtBtn {
-    margin-left: 30px;
+.cancelLabel{
+    color: red;
+    padding-left: 10px;
+    
 }
+
+.cancelLabel:hover{
+    text-decoration: underline;
+}
+
 
 .sprintMenu {
-    margin-bottom: 0;
+   margin-left: 0; 
+}
+
+.newSprintForm{
+   visibility: hidden; 
+   position: absolute;
+   margin: 20px 0 0 65px;
 }
 
 
-.sprintInput {
-    margin-left: 0;
-    margin-top: 22px;
-    visibility: hidden;
-}
-
-.sprintCreatebtn {
-    margin-left: 0px;
-    margin-top: 22px;
-    visibility: hidden;
-}
 
 
 hr {
@@ -184,70 +240,184 @@ hr {
 
 /* Set a style for all buttons */
 button {
-    background-color: #00b33c;
-    color: white;
-    padding: 15px,15px,15px,15px;
-    height: 30px;
+    background-color: #0070cb;
+    color: white;   
+    height: 25px;
     opacity: 0.9;
+     margin: 3px 0px 4px 2px;  
 }
 
     button:hover {
-        opacity: 1;
+        opacity: 5;
+        background-color: #5eade4;
     }
 
-.selectIssueType {
-    width: 100px;
-    height: 30px;
+.selectCreateIssue {
+    width: 200px;
+    height: 25px;
     padding: 0;
     font-size: 13px;
+    margin: 2px 0px 0px 2px;
 }
 
-.selectAssigne {
-    height: 30px;
-    padding: 0;
-    font-size: 13px;
-}
-
-.selectParentIssue {
-    height: 30px;
-    padding: 0;
-    font-size: 13px;
-}
 
 .issueName {
     margin-bottom: 2px;
 }
-
+.issueCrtBtn {
+    margin-left: 10px;
+}
 
 select {
     padding: 8px;
     margin-bottom: 7px;
-    width: 240px;
+    width: 180px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    font-size: 20px;
+    font-size: 15px;
 }
 
-
+.tablerow{
+}
 
 table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
-    white-space:nowrap;
+    table-layout:fixed
 }
 
+ tbody,tr { display: block; }
+ 
+ .statusRowHidden{
+     display: none;
+ }
+ .sprintRowHidden{
+    display: none; 
+ }
+ 
+ .filterStatusContainer{
+   position: absolute;
+   height:29px;
+   width: 390px;
+   margin:4px 0 0 259px;
+   visibility: hidden;
+      
+ } 
+
+ 
+tr:after {
+            content: ' ';
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+        
 th {
-    text-align: center;
-    padding: 8px;
+    padding: 3px;
     border: solid;
-    border-color: darkturquoise;
+    height:35px;
+    border-color: #1d90c9;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px        
 }
 
-td {
-    text-align: left;
-    padding: 8px;    
+tbody{
+     height: 350px;
+     overflow-y: auto;
 }
+
+ td {
+    text-align: left;
+    padding: 2px;
+    height: 25px;
+    display: flex;
+    float:left;
+    font-size: 11px;
+    justify-content: center;
+    word-wrap:break-word    
+    
+}
+.issueColhead{
+  width: 12%;  
+}
+.typeColhead{
+   width: 8%; 
+}         
+.statusColhead{
+   width: 12%; 
+} 
+.statusColhead:hover{
+    text-decoration: underline;
+    color:#0070cb;    
+}
+
+.descColhead{
+   width: 15%
+}   
+.commColhead{
+   width: 15%
+}
+
+.asgColhead{
+   width: 10%
+}
+.crtColhead{
+   width: 13% 
+}
+
+.updColhead{
+   width: 15%}
+
+.issueColID{
+   width: 3%
+}
+        
+.issueCol{
+  width: 12%; 
+  justify-content:flex-start;
+}
+
+.subIssueCol{
+  width: 12%; 
+  justify-content: flex-start;
+  padding-left: 20px  
+}
+
+.typeCol{
+   width: 8% ;
+}         
+.statusCol{
+   width: 12%; 
+}   
+.descCol{
+   width: 15%; 
+   justify-content: flex-start ; 
+}   
+.commCol{
+   width: 15%; 
+   justify-content: flex-start;
+}  
+.asgCol{
+   width: 10% 
+}
+.crtCol{
+   width: 13% 
+}
+.updCol{
+   width: 15% 
+}
+.issueColID{
+   width: 3% 
+}
+
+
+
+        
+
 
 .issueColumnID {
     text-align: center;
@@ -262,6 +432,20 @@ tr:nth-child(even) {
 }
 
 
+.issueCol{
+ justify-content: left;  
+}
+
+.subIssueCol{
+    justify-content: center;  
+}
+
+.typeCol{
+   text-align: center  
+}
+
+
+
 
 .listTree {
     padding-left: 2%;
@@ -270,20 +454,20 @@ tr:nth-child(even) {
 
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+   display: flex;
+   position: absolute;
+   padding: 50px 0 0 45px;
+   vertical-align: middle;
+   visibility: hidden;
 }
 
-.dropdown-content {
-    visibility: hidden;
-    position: absolute;
-    min-width: 126px;
-    box-shadow: 0px, 0px, 10px, 5px rgba(0,0,0,0.2);
+.dropdown-content {   
+    display: flex;
+    flex-direction: column;
+    
 }
 
-.dropdown button {
-    width: 60px;
-}
+
 
 .show {
     display: block;
@@ -293,9 +477,5 @@ tr:nth-child(even) {
 
 
 
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-    .a {
-        width: 40%;
-    }
-}
+
+

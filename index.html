@@ -1,132 +1,175 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Project_management_tool</title>
-    <meta charset="utf-8" />
-    <link href="css/style.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <title>Project_management_tool</title>
+        <meta charset="utf-8" />
+        <link href="css/style.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-</head>
-<body>
-    <h1></h1>
-    <div class="row">
-        <div class="col-1">
-            <input type="text" placeholder="Enter New Project" id="projectField" name="project" required>
-            <button type="button" id="projectCreateBtn" class="projectCreatebtn">Create</button>
-        </div>
-        <div class="col-2">
-            <div class="middleTitle">
-                <h2 id="title"> Project Management Tool </h2>
+    </head>
+    <body>
+        <div class=" contentPane"> 
+            <h1></h1>
+            <div class="row">
+
+                <div class="col-1">
+                    <input type="text" placeholder="Enter New Project" id="projectField" name="project" required>
+                    <button type="button" id="projectCreateBtn" class="projectCreatebtn">Create</button>
+                </div>
+                <div class="col-2">
+                    <div class="col-12"> </div>
+                    <div class="middleTitle">
+                        <h2 id="title"> Project Management Tool </h2>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <input type="text" placeholder="Enter New Username" id="userField" name="username" required>
+                    <button type="button" id="userCreateBtn" class="userCreatebtn">Create</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class=" col-4">
+                    <form action="" method="get" id="form2">
+                        <select id="selectProject">
+                            <option value="0" disabled selected>--Select your Project--</option>
+                        </select>
+                    </form>
+                </div>
+                <div class=" col-2">
+                    <div id="newSprintForm" class="newSprintForm">
+                        <input class="sprintInput" type="text" placeholder="Enter New Sprint" id="sprintField" name="sprint" required>
+                        <button type="button" id="sprintCreateBtn" class="sprintCreatebtn">Save</button>
+                        <label type="submit" id="sprintCancel" class="cancelLabel">Cancel</label>
+                    </div> 
+
+                </div>
+
+                <div class=" col-5">
+                    <form action="index.html" method="get" id="form2">
+                        <select id="selectUser">
+                            <option value="0" disabled selected>--Select your User--</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class=" col-6"> 
+                </div>  
+                <div class=" col-7">
+                    <ul id="sprintMenu"  class=" sprintMenu">
+                        <li class="addSprint" id="addNewSprint">New Sprint</li>
+                    </ul>                    
+                </div>
+            </div>
+            <div class="tablerow">
+                <div id="listColumn" class=" col-8">
+                    <ul class="listTree" id="listTree">
+                        -Project overview-
+
+                    </ul>
+                </div>
+                <div class=" col-10">
+                    <table onclick="manageIssue(this)" id="issueTable" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th class=" issueColhead">Issue</th>
+                                <th class=" typeColhead">Type</th>
+                                <th id="statusColhead" class=" statusColhead">Status</th>
+                                <th class=" descColhead">Description</th>
+                                <th class=" commColhead">Comments</th>
+                                <th class=" asgColhead">Assigned</th>
+                                <th class=" crtColhead">Created By</th>
+                                <th class=" updColhead">Updated</th>
+                                <th  style="display:none" class="issueColID"></th>
+                            </tr>
+                        </thead>                    
+                        <tr >
+                            <td class=" issueCol">&nbsp;</td>
+                            <td class=" typeCol">&nbsp;</td>
+                            <td class=" statusCol">&nbsp;</td>
+                            <td class=" descCol">&nbsp;</td>
+                            <td class=" commCol">&nbsp;</td>
+                            <td class=" asgCol">&nbsp;</td>
+                            <td class=" crtCol">&nbsp;</td>
+                            <td class=" crtCol">&nbsp;</td>
+                            <td style="display:none" class="issueColID"></td>
+                        </tr>
+
+                    </table>
+                    <p>Click to any row to manage issues </br>
+                       Click to  <b>Status</b>  tablecell  header to filter Issues</br>
+                       Select <b>Sprint</b> from the tab to filter issues by Sprint;
+                    </p>                    
+                    <div class=" col-9" id="newIssueContainer">
+                        <div class=" col-15">
+                            <input class="issueName" type="text" placeholder="Enter Issue name" id="isseuField" required>   
+                        </div>
+                        <div class="col-15">
+                            <select class="selectCreateIssue" id="selectIssueType">
+                                <option value="0" disabled selected>-Type-</option>
+                                <option value="1">Feature</option>
+                                <option value="2">Bug</option>
+                                <option value="3">Task</option>
+                            </select>
+                            <select class="selectCreateIssue" id="selectIssueAssigne">
+                                <option value="0" disabled selected>-Assigned-</option>
+                            </select>
+                            <select class="selectCreateIssue" id="selectParentIssue">
+                                <option value="0" disabled selected>-Add Parent (Create subtask)-</option>
+                            </select> 
+                            <select class="selectCreateIssue" id="selectSprintIssue">
+                                <option value="0" disabled selected>-Move to Sprint (optional)-</option>
+                            </select> 
+                            <select class="selectCreateIssue" id="selectStatusIssue">
+                                <option value="0" disabled selected>-Select Status-</option>
+                                <option value="1">In progress</option>
+                                <option value="2">Feedback</option>
+                                <option value="3">Rework</option>
+                                <option value="4">Resolved</option>
+                                <option value="4">Ready for Testing</option>
+                            </select>  
+                        </div> 
+                        <div class=" col-15">
+                            <textarea id="newIsseuDescription" placeholder="Issue description" rows="3" cols="25"></textarea>
+                            <textarea id="newComment" placeholder="Your Comment" rows="3" cols="25"></textarea> 
+                        </div> 
+                        <div class=" col-15">
+                            <button type="button" id="addIssue" class="issueCrtBtn">Save</button>
+                            <button type="button" id="updateIssue" class="issueCrtBtn">Save</button> 
+                            <label type="submit" id="issueCancel" class="cancelLabel">Cancel</label>
+                        </div>
+                    </div>
+                    <div class="filterStatusContainer" id="filterStatusContainer"> >
+                        <select class="selectCreateIssue" id="filterStatusSelect">
+                            <option value="0" disabled selected>-Filter By-</option>
+                            <option value="1">New</option>
+                            <option value="2">In progress</option>
+                            <option value="3">Feedback</option>
+                            <option value="4">Rework</option>
+                            <option value="5">Resolved</option>
+                            <option value="6">Ready for Testing</option>
+                        </select> 
+                        <button type="button" id="filterStatusBtn" class="issueCrtBtn">Filter</button>
+                        <label type="submit" id="filterCancelBtn" class="cancelLabel">Cancel</label>
+                    </div>
+
+                </div>
+                <div class="dropdown" id="myDropdown">
+                    <div  class="dropdown-content">-Manage Issues- 
+                        <button id="showIssueCreate" class="issueManageBtn">Create Issue</button>
+                        <button id="showIssueUpdate" class="issueManageBtn">Update Selected</button>
+                    <!--<button id="showIssueMove" class="issueManageBtn">Move Selected</button>
+                        <button id="howIssueDelete" class="issueManageBtn">Delete Selected</button>-->
+                        <button id="howIssueHide" class="issueManageBtn">Hide Manager</button>
+                    </div>   
+                </div>
+
+                <script src="js/main.js"></script>
             </div>
         </div>
-        <div class="col-3">
-            <input type="text" placeholder="Enter New Username" id="userField" name="username" required>
-            <button type="sbutton" id="userCreateBtn" class="userCreatebtn">Create</button>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class=" col-4">
-            <form action="" method="get" id="form2">
-                <select id="selectProject">
-                    <option value="0" disabled selected>--Select your Project--</option>
-                </select>
-            </form>
-        </div>
-        <div class=" col-5">
-            <form action="index.html" method="get" id="form2">
-                <select id="selectUser">
-                    <option value="0" disabled selected>--Select your User--</option>
-                </select>
-            </form>
-        </div>
-    </div>
-    <div>
-        <h1></h1>
-        <h1></h1>
-    </div>
-    <div class="row">
-        <div class=" col-6"> 
-          <div class="dropdown">
-            <div id="myDropdown"  class="dropdown-content">-Manage Issues 
-               <button id="showIssueCreate" class="issueManageBtn">Create</button>
-               <button id="showIssueEdit" class="issueManageBtn">Edit</button>
-               <button id="showIssueMove" class="issueManageBtn">Move</button>
-               <button id="howIssueDelete" class="issueManageBtn">Delete</button>
-            </div>
-          </div>  
-        </div>
-        <div class=" col-7">
-            <ul id="sprintMenu"  class=" sprintMenu">
-                <li class="addSprint" id="addNewSprint">New Sprint</li>
-            </ul>
-            <input class="sprintInput" type="text" placeholder="Enter New Sprint" id="sprintField" name="sprint" required>
-            <button type="button" id="sprintCreateBtn" class="sprintCreatebtn">Create</button>
-        </div>
-    </div>
-
-    <div class="row">
-        <div id="listColumn" class=" col-8">
-            <ul class="listTree" id="listTree">
-                --Project overview--
-
-            </ul>
-        </div>
-        <div class=" col-10">
-            <table id="issueTable" style="width:100%;">
-                <tr>
-                    <th class=" issueCol">Issue</th>
-                    <th class=" subIssueCol">Sub-Issue</th>
-                    <th class=" typeCol">Type</th>
-                    <th class=" statusCol">Status</th>
-                    <th class=" descCol">Description</th>
-                    <th class=" commCol">Comments</th>
-                    <th class=" asgCol">Assigned</th>
-                    <th class=" crtCol">Created By</th>
-                    <th class=" updCol">Updated</th>
-                    <th  style="display:none" class="issueColumnID"></th>
-                </tr>
-                <tr onclick="manageIssue(this)">
-                    <td class=" issueCol">&nbsp;</td>
-                    <td class=" subIssueCol">&nbsp;</td>
-                    <td class=" typeCol">&nbsp;</td>
-                    <td class=" statusCol">&nbsp;</td>
-                    <td class=" descCol">&nbsp;</td>
-                    <td class=" commCol">&nbsp;</td>
-                    <td class=" asgCol">&nbsp;</td>
-                    <td class=" crtCol">&nbsp;</td>
-                    <td class=" crtCol">&nbsp;</td>
-                    <td style="display:none" class="issueColumnID"></td>
-                </tr>
-            </table>
-            <p>Click to any row to manage issues</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class=" col-6">
-        </div>
-        <div class=" col-9" id="newIssueContainer">
-            <input class="issueName" type="text" placeholder="Enter Issue name" id="isseuField" required>
-            <select class="selectIssueType" id="selectIssueType">
-                <option value="0" disabled selected>-Type-</option>
-                <option value="1">Feature</option>
-                <option value="2">Bug</option>
-                <option value="3">Task</option>
-            </select>
-            <select class="selectAssigne" id="selectIssueAssigne">
-                <option value="0" disabled selected>-Assigned-</option>
-            </select>
-            <select class="selectParentIssue" id="selectParentIssue">
-                <option value="0" disabled selected>-Add to Parent Issue(optional)-</option>
-            </select>
-            <textarea id="newIsseuDescription" placeholder="Issue description" rows="2" cols="25"></textarea>
-            <textarea id="newComment" placeholder="Your Comment" rows="2" cols="25"></textarea>
-            <button type="button" id="addIssue" class="issueCrtBtn">Create</button>
-        </div>
-    </div>    
-   
-    <script src="js/main.js"></script>
-</body>
+    </body>
 </html>
 
 
