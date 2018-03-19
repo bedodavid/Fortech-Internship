@@ -209,7 +209,7 @@ input[type=text] {
     }
 
 .cancelLabel{
-    color: red;
+    color:red;
     padding-left: 10px;
     
 }
@@ -217,6 +217,19 @@ input[type=text] {
 .cancelLabel:hover{
     text-decoration: underline;
 }
+
+.hideLabel{
+    color: #006398;
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.hideLabel:hover{
+    text-decoration: underline;
+}
+
 
 
 .sprintMenu {
@@ -260,6 +273,23 @@ button {
     margin: 2px 0px 0px 2px;
 }
 
+.selectFilterStatus{
+  width: 150px;
+    height: 25px;
+    padding: 0;
+    font-size: 13px;
+    margin: 2px 0px 0px 2px;  
+}
+
+.showAllStatusLabel{
+   color: green;
+   padding-right: 5px;  
+}
+
+
+.showAllStatusLabel:hover{
+    text-decoration: underline;
+}
 
 .issueName {
     margin-bottom: 2px;
@@ -338,17 +368,28 @@ tbody{
     float:left;
     font-size: 11px;
     justify-content: center;
-    word-wrap:break-word    
-    
+    align-items:center;
+    word-wrap: break-word;
+    border-style: none none solid none; 
 }
+.tableLastrow{
+  border-style: none none none none; 
+}
+
+.commentedIssue:hover{
+   text-decoration: underline;
+    color:#008000;  
+}
+
 .issueColhead{
   width: 12%;  
 }
+
 .typeColhead{
    width: 8%; 
 }         
 .statusColhead{
-   width: 12%; 
+   width: 15%; 
 } 
 .statusColhead:hover{
     text-decoration: underline;
@@ -359,7 +400,7 @@ tbody{
    width: 15%
 }   
 .commColhead{
-   width: 15%
+   width: 10%
 }
 
 .asgColhead{
@@ -373,33 +414,34 @@ tbody{
    width: 15%}
 
 .issueColID{
-   width: 3%
+   width: 2%
 }
         
 .issueCol{
   width: 12%; 
   justify-content:flex-start;
+   border-style: none solid solid none;
 }
 
 .subIssueCol{
   width: 12%; 
   justify-content: flex-start;
-  padding-left: 20px  
+  padding-left: 20px ; 
+ border-style: none solid solid none;
 }
 
 .typeCol{
    width: 8% ;
 }         
 .statusCol{
-   width: 12%; 
+   width: 15%; 
 }   
 .descCol{
    width: 15%; 
    justify-content: flex-start ; 
 }   
 .commCol{
-   width: 15%; 
-   justify-content: flex-start;
+   width: 10%;  
 }  
 .asgCol{
    width: 10% 
@@ -411,7 +453,7 @@ tbody{
    width: 15% 
 }
 .issueColID{
-   width: 3% 
+   width: 2% 
 }
 
 
@@ -427,13 +469,8 @@ tbody{
     border-bottom: none;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2
-}
-
-
 .issueCol{
- justify-content: left;  
+ justify-content:flex-start;  
 }
 
 .subIssueCol{
@@ -467,7 +504,69 @@ tr:nth-child(even) {
     
 }
 
+.statusProgress{
+    color: #019CA6;
+    width: 15%; 
+}
 
+.statusFeedback{
+    color: #ff8700;
+    width: 15%; 
+}
+
+.statusRework{
+    color: #ff0100;
+    width: 15%; 
+}
+
+.statusResolved{
+    color: #127B11;
+    width: 15%; 
+}
+
+.statusReadyFTest{
+    color: #014AA6;
+    width: 15%; 
+}
+
+
+.commentTable{
+   border: 1px solid#ddd;
+  
+}
+
+.commentContainer{
+    position: absolute;   
+    overflow-y: auto;
+    width: 320px;
+    max-height: 200px;
+    margin-left: 480px;
+    margin-top: 50px;
+    visibility: hidden;
+    align-content: center;
+}
+.commColheadCommenter{
+   width: 30% ;   
+   border-color: #ddd;
+   border-bottom-color: #1d90c9;    
+}
+.commColheadDescrip{
+    width: 70%; 
+     border-color: #ddd;
+     border-bottom-color: #1d90c9;        
+}
+.commColCommenter{
+    width: 30% ;
+    border-style: none none solid none; 
+    border-width: 2px;
+}
+.commColDescrip{
+    width: 70%;
+    justify-content: flex-start;
+    border-style: none none solid solid; 
+    border-width: 2px;
+    
+}
 
 .show {
     display: block;
