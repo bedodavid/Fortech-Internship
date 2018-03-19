@@ -351,7 +351,7 @@ function getParentTasksIds() {
             returnTasksID = [];
 
     // getting all subtasks ids
-    var issueArrayLength=issueArray.length;
+    var issueArrayLength = issueArray.length;
     for (i = 0; i < issueArrayLength; i++) {
         var subtask = [];
         subtask = issueArray[i].getIssueSubTasks;
@@ -371,8 +371,8 @@ function getParentTasksIds() {
         } else {
             parentTasksID = allTasksID;
         }
-        
-        var parentTaskIDLenght=parentTasksID.length;
+
+        var parentTaskIDLenght = parentTasksID.length;
         for (i = 0; i < parentTaskIDLenght; i++) {
             var issueType = issueArray[parentTasksID[i] - 1].getIssueType;
             if (issueType !== "Task") {
@@ -984,27 +984,30 @@ function updateIssueUI() {
 
     // Updating: move issues to new Sprint
     if (moveSprint !== 0) {
-     //  if(nameCell.getAttribute("class")==="issueCol")
-        var sprintOptions = selectSprintToMove.options,
-                newSelectedSprintID = sprintOptions[moveSprint].value;
-        var oldSprintIDCode = "sprint" + sprintArray[selectedSprintTabID - 1].getSprintName + "_" + (selectedSprintTabID - 1);
-        var newSprintIDCode = "sprint" + sprintArray[newSelectedSprintID - 1].getSprintName + "_" + (newSelectedSprintID - 1);
-        issueArray[issueId - 1].setIssueSprint(newSelectedSprintID);
+        if (nameCell.getAttribute("class") === "issueCol") {
+            var sprintOptions = selectSprintToMove.options,
+                    newSelectedSprintID = sprintOptions[moveSprint].value;
+            var oldSprintIDCode = "sprint" + sprintArray[selectedSprintTabID - 1].getSprintName + "_" + (selectedSprintTabID - 1);
+            var newSprintIDCode = "sprint" + sprintArray[newSelectedSprintID - 1].getSprintName + "_" + (newSelectedSprintID - 1);
+            issueArray[issueId - 1].setIssueSprint(newSelectedSprintID);
 
-        // updating the sprint of the issues
-        var subIssues = issueArray[issueId - 1].getIssueSubTasks;
-        if (subIssues !== "undefined" && subIssues.length > 0) {
-            var subIssueLength = subIssues.length;
-            for (var i = 0; i < subIssueLength; i++) {
-                issueArray[subIssues[i] - 1].setIssueSprint(newSelectedSprintID);
+            // updating the sprint of the issues
+            var subIssues = issueArray[issueId - 1].getIssueSubTasks;
+            if (subIssues !== "undefined" && subIssues.length > 0) {
+                var subIssueLength = subIssues.length;
+                for (var i = 0; i < subIssueLength; i++) {
+                    issueArray[subIssues[i] - 1].setIssueSprint(newSelectedSprintID);
+                }
             }
-        }
 
-        //updating the tree
-        var movingIssueID = "issue" + nameCell.innerHTML + "_" + (rowIndex - 1);
-        var issueNode = document.getElementById(movingIssueID);
-        document.getElementById(newSprintIDCode).appendChild(issueNode);
-        filterIssueBySprint();
+            //updating the tree
+            var movingIssueID = "issue" + nameCell.innerHTML + "_" + (rowIndex - 1);
+            var issueNode = document.getElementById(movingIssueID);
+            document.getElementById(newSprintIDCode).appendChild(issueNode);
+            filterIssueBySprint();
+        }else{
+            alert("Only main issues can be moved");
+        }
     }
 
 
