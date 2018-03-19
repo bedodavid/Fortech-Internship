@@ -297,9 +297,11 @@ function createTree(name, nodeID, type, id) {
 }
 
 function listProjectSprint(project) {
-    var string = " ";
-    for (i = 0; i < project.sprints.length; i++) {
-        string = string + project.sprints[i] + " ";
+    var string = " ",
+            projectSprints = project.getProjectSprints,
+            projectSprintsLenght = project.getProjectSprints.length;
+    for (i = 0; i < projectSprintsLenght; i++) {
+        string = string + projectSprints[i] + " ";
     }
     return string;
 }
@@ -320,12 +322,14 @@ function getDate(date) {
 
 function getNotMatchingItemsTwoArray(alltasks, subtasks) {
     // getting all tasks
-    var i = 0;          //iterating the alltask
-    var j = 0;          //iterating the subtastk                     
-    var n = 0;          //iterating the parenttask
-    var parenttasks = [];
+    var i = 0, //iterating the alltask
+            j = 0, //iterating the subtastk                     
+            n = 0, //iterating the parenttask
+            parenttasks = [],
+            allTasksLenght = alltasks.length;
     subtasks.sort();
-    for (i = 0; i < alltasks.length; i++) {
+
+    for (i = 0; i < allTasksLenght; i++) {
         if (alltasks[i] === subtasks[j]) {
             j++;
         } else {
@@ -347,7 +351,8 @@ function getParentTasksIds() {
             returnTasksID = [];
 
     // getting all subtasks ids
-    for (i = 0; i < issueArray.length; i++) {
+    var issueArrayLength=issueArray.length;
+    for (i = 0; i < issueArrayLength; i++) {
         var subtask = [];
         subtask = issueArray[i].getIssueSubTasks;
         if (typeof subtask !== "undefined" && subtask.type !== "null") {
@@ -356,7 +361,7 @@ function getParentTasksIds() {
         }
     }
     //getting all tasks ID
-    for (i = 0; i < issueArray.length; i++) {
+    for (i = 0; i < issueArrayLength; i++) {
         allTasksID[i] = i + 1;
     }
 
@@ -366,8 +371,9 @@ function getParentTasksIds() {
         } else {
             parentTasksID = allTasksID;
         }
-
-        for (i = 0; i < parentTasksID.length; i++) {
+        
+        var parentTaskIDLenght=parentTasksID.length;
+        for (i = 0; i < parentTaskIDLenght; i++) {
             var issueType = issueArray[parentTasksID[i] - 1].getIssueType;
             if (issueType !== "Task") {
                 returnTasksID.push(parentTasksID[i]);
@@ -379,8 +385,9 @@ function getParentTasksIds() {
 
 function getCommentNameFromID(array) {
     result = "";
-    var i;
-    for (i = 0; i < array.length; i++) {
+    var i,
+            arrayLength = array.length;
+    for (i = 0; i < arrayLength; i++) {
         result += commentArray[array[i] - 1].getCommentName + '\n';
     }
     return result;
@@ -508,8 +515,8 @@ function resetNewIssueFormUI() {
     document.getElementById("newIsseuDescription").value = "";
 
     selAssigne.selectedIndex = 0;
-    var i;
-    var assigneItems = selAssigne.childElementCount;
+    var i,
+            assigneItems = selAssigne.childElementCount;
     for (i = 1; i < assigneItems; i++) {
         selAssigne.remove(1);
     }
@@ -603,8 +610,9 @@ function filterIssueBySprint() {
 //By CLICKING on s SPRINTTAB manage the  SELECTION of Sprints UI (from the menutab)
 function manageSprintMenu(obj) {
     var sprintTabsList = document.getElementsByTagName("a");
-    var i;
-    for (i = 0; i < sprintTabsList.length; i++) {
+    var i,
+            sprintTabsListLength = sprintTabsList.length;
+    for (i = 0; i < sprintTabsListLength; i++) {
         sprintTabsList[i].className = "sprintTabs";
     }
     obj.className = "active";
@@ -736,8 +744,11 @@ function createSprintUI() {
 // By CLICKING on CREATE ISSUE will set visible the Issue Creation from, the from will be visible after CLICKED on the TABLE
 function triggerIssueCreationUI() {
     if (selectedSprintTabID !== 0) {
-        var selectAssigne = document.getElementById("selectIssueAssigne");
-        for (i = 0; i < userArray.length; i++) {
+        var selectAssigne = document.getElementById("selectIssueAssigne"),
+                userArrayLength = userArray.length,
+                i;
+
+        for (i = 0; i < userArrayLength; i++) {
             var opt = document.createElement("option");
             opt.value = userArray[i].getUserId;
             opt.innerHTML = userArray[i].getUserName;
@@ -747,7 +758,9 @@ function triggerIssueCreationUI() {
         /// need to getParentIssues to  populate table, paret Issues are those which ID's are not present in any issue.task;
         parentTaskIDs = getParentTasksIds();
         if (typeof parentTaskIDs !== "undefined" && typeof parentTaskIDs !== "null") {
-            for (i = 0; i < parentTaskIDs.length; i++) {
+            var parentTaskIDsLength = parentTaskIDs.length;
+
+            for (i = 0; i < parentTaskIDsLength; i++) {
                 var parentSprint = issueArray[parentTaskIDs[i] - 1].getIssueSprint;
                 if (parentSprint === selectedSprintTabID) {
                     var opt1 = document.createElement("option");
@@ -859,8 +872,8 @@ function createIssueUI() {
         // reseting the create issue form fields  
         selType.selectedIndex = 0;
         selAssigne.selectedIndex = 0;
-        var i;
-        var assigneItems = selAssigne.childElementCount;
+        var i,
+                assigneItems = selAssigne.childElementCount;
         for (i = 1; i < assigneItems; i++) {
             selAssigne.remove(1);
         }
@@ -880,16 +893,20 @@ function createIssueUI() {
 
 function showIssueUpdateUI() {
     if (rowIndex > 0) {
-        var i;
-        var selectAssigne = document.getElementById("selectIssueAssigne");
-        for (i = 0; i < userArray.length; i++) {
+        var i,
+                selectAssigne = document.getElementById("selectIssueAssigne"),
+                userArrayLength = userArray.length,
+                sprintArrayLength = sprintArray.length;
+
+        for (i = 0; i < userArrayLength; i++) {
             var opt = document.createElement("option");
             opt.value = userArray[i].getUserId;
             opt.innerHTML = userArray[i].getUserName;
             selectAssigne.appendChild(opt);
         }
 
-        for (i = 0; i < sprintArray.length; i++) {
+
+        for (i = 0; i < sprintArrayLength; i++) {
             if (i !== selectedSprintTabID - 1) {
                 var opt = document.createElement("option");
                 opt.value = sprintArray[i].getSprintId;
@@ -918,7 +935,7 @@ function showIssueUpdateUI() {
 
 
 
-function updateIssueUI() {  
+function updateIssueUI() {
     var updateRow = table.rows[rowIndex];
     var issueId = updateRow.cells[8].innerHTML;
     var nameCell = updateRow.cells[0];
@@ -967,7 +984,7 @@ function updateIssueUI() {
 
     // Updating: move issues to new Sprint
     if (moveSprint !== 0) {
-
+     //  if(nameCell.getAttribute("class")==="issueCol")
         var sprintOptions = selectSprintToMove.options,
                 newSelectedSprintID = sprintOptions[moveSprint].value;
         var oldSprintIDCode = "sprint" + sprintArray[selectedSprintTabID - 1].getSprintName + "_" + (selectedSprintTabID - 1);
