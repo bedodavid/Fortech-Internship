@@ -420,7 +420,7 @@ function addIssueToTable(isSubtask, insertRow) {
     created.setAttribute("class", "crtCol");
     updated.setAttribute("class", "updCol");
     issueID.setAttribute("class", "issueColD");
-    //issueID.style.display = "none";
+    issueID.style.display = "none";
 
     var assigneName = userArray[issueArray[getissueID].getIssueAssigne - 1].getUserName;
     var createdName = userArray[issueArray[getissueID].getIssueCreatedBy - 1].getUserName;
@@ -438,8 +438,6 @@ function addIssueToTable(isSubtask, insertRow) {
         comments.setAttribute("onmouseleave", "hideCommentsUI()");
     }
 
-
-
     issueName.innerHTML = issueArray[getissueID].getIssueName;
     type.innerHTML = issueArray[getissueID].getIssueType;
     status.innerHTML = issueArray[getissueID].getIssueStatus;
@@ -450,6 +448,57 @@ function addIssueToTable(isSubtask, insertRow) {
     updated.innerHTML = update;
     comments.innerHTML = commentsContent;
 }
+
+function checkSubIssuesAllResolved(tablePos) {
+    var issueID = table.rows[tablePos].cells[8].innerHTML;
+    var subIssues = issueArray[issueID - 1].getIssueSubTasks;
+    var subIsLength = subIssues.length;
+    var allResolved = true;
+    var i = 0;
+    while (allResolved && i < subIsLength) {
+        if (issueArray[subIssues[i] - 1].getIssueStatus !== "Resolved") {
+            allResolved = false;
+        } else {
+            i++;
+        }
+    }
+    return allResolved;
+}
+
+function setStatusCellUpdate(newSelectedStatus, row) {
+    var tablerow = table.rows[row];
+    var statusCell = tablerow.cells[2];
+    switch (newSelectedStatus) {
+        case "In progress":
+        {
+            statusCell.setAttribute("class", "statusProgress");
+            break;
+        }
+        case "Feedback":
+        {
+            statusCell.setAttribute("class", "statusFeedback");
+            break;
+        }
+        case "Rework":
+        {
+            statusCell.setAttribute("class", "statusRework");
+            break;
+        }
+        case "Resolved":
+        {
+            statusCell.setAttribute("class", "statusResolved");
+            break;
+        }
+        case "Ready for Testing":
+        {
+            statusCell.setAttribute("class", "statusReadyFTest");
+            break;
+        }
+    }
+    statusCell.innerHTML = newSelectedStatus;
+}
+
+
 
 function resetNewIssueFormUI() {
     document.getElementById("isseuField").value = "";
@@ -758,7 +807,6 @@ function createIssueUI() {
     var assegneID = selAssigne.selectedIndex;
     var sprintID = selectedSprintTabID;
     var userID = userList.selectedIndex;
-
     var commentText = commentTextArea.value;
 
     if (errorResponce.length === 13) {
@@ -800,7 +848,6 @@ function createIssueUI() {
             }
             addIssueToTable(true, tablePosition);
 
-
             //updating the -Project Overview- 
             var issueName = issueArray[parenTaskArrayPosition].getIssueName;
             var nodeID = "issue" + issueName + "_" + (parenTaskArrayPosition);
@@ -808,9 +855,6 @@ function createIssueUI() {
             var subIssueID = "subIssue" + name + "_" + (issueArray.length - 1);
             createTree(name, node, "UL", subIssueID);
         }
-
-
-
 
         // reseting the create issue form fields  
         selType.selectedIndex = 0;
@@ -873,94 +917,22 @@ function showIssueUpdateUI() {
 }
 
 
-function getParentIssue(index, name) {
-    var subIssueIDcode = "subIssue" + name + "_" + (index - 1);
-}
 
-
-function checkSubIssuesAllResolved(tablePos) {
-    var issueID = table.rows[tablePos].cells[8].innerHTML;
-    var subIssues = issueArray[issueID - 1].getIssueSubTasks;
-    var subIsLength = subIssues.length;
-    var allResolved = true;
-    var i = 0;
-    while (allResolved && i < subIsLength) {
-        if (issueArray[subIssues[i] - 1].getIssueStatus !== "Resolved") {
-            allResolved = false;
-        } else {
-            i++;
-        }
-    }
-    return allResolved;
-}
-
-function setStatusCellUpdate(newSelectedStatus, row) {
-    var tablerow = table.rows[row];
-    var statusCell = tablerow.cells[2];
-    switch (newSelectedStatus) {
-        case "In progress":
-        {
-            statusCell.setAttribute("class", "statusProgress");
-            break;
-        }
-        case "Feedback":
-        {
-            statusCell.setAttribute("class", "statusFeedback");
-            break;
-        }
-        case "Rework":
-        {
-            statusCell.setAttribute("class", "statusRework");
-            break;
-        }
-        case "Resolved":
-        {
-            statusCell.setAttribute("class", "statusResolved");
-            break;
-        }
-        case "Ready for Testing":
-        {
-            statusCell.setAttribute("class", "statusReadyFTest");
-            break;
-        }
-    }
-    statusCell.innerHTML = newSelectedStatus;
-}
-
-
-function updateIssueUI() {
-    /* writed code for updated issues
-     name- DONE
-     assigne--DONE
-     newSprint--
-     status--DONE
-     -substatus--> change to ready for test the features and task---
-     description-DONE
-     comment-- DONE
-     updateTime--DONE
-     */
-
+function updateIssueUI() {  
     var updateRow = table.rows[rowIndex];
     var issueId = updateRow.cells[8].innerHTML;
     var nameCell = updateRow.cells[0];
     var subIssueID = "subIssue" + updateRow.cells[0].innerHTML + "_" + (issueId - 1);  // so i can get the parent Issue    
 
-
+    //input fields variables
     var issueName = document.getElementById("isseuField"),
             name = issueName.value;
-
     var issueDescription = document.getElementById("newIsseuDescription"),
             dscp = issueDescription.value;
-
-
     var selAssigne = document.getElementById("selectIssueAssigne");
-
     var assegneID = selAssigne.selectedIndex;
-
     var commentText = commentTextArea.value;
-
     var newStatusIndex = selectStatusIssue.selectedIndex;
-
     var moveSprint = selectSprintToMove.selectedIndex;
 
 
@@ -997,12 +969,12 @@ function updateIssueUI() {
     if (moveSprint !== 0) {
 
         var sprintOptions = selectSprintToMove.options,
-                newSelectedSprintID = sprintOptions[moveSprint].value;     
+                newSelectedSprintID = sprintOptions[moveSprint].value;
         var oldSprintIDCode = "sprint" + sprintArray[selectedSprintTabID - 1].getSprintName + "_" + (selectedSprintTabID - 1);
-        var newSprintIDCode = "sprint" + sprintArray[newSelectedSprintID - 1].getSprintName + "_" + (newSelectedSprintID - 1);     
+        var newSprintIDCode = "sprint" + sprintArray[newSelectedSprintID - 1].getSprintName + "_" + (newSelectedSprintID - 1);
         issueArray[issueId - 1].setIssueSprint(newSelectedSprintID);
 
-       // updating the sprint of the issues
+        // updating the sprint of the issues
         var subIssues = issueArray[issueId - 1].getIssueSubTasks;
         if (subIssues !== "undefined" && subIssues.length > 0) {
             var subIssueLength = subIssues.length;
@@ -1010,17 +982,17 @@ function updateIssueUI() {
                 issueArray[subIssues[i] - 1].setIssueSprint(newSelectedSprintID);
             }
         }
-        
+
         //updating the tree
-        var movingIssueID="issue"+nameCell.innerHTML+"_"+(rowIndex-1);        
-        var issueNode=document.getElementById(movingIssueID);
-        document.getElementById(newSprintIDCode).appendChild(issueNode); 
+        var movingIssueID = "issue" + nameCell.innerHTML + "_" + (rowIndex - 1);
+        var issueNode = document.getElementById(movingIssueID);
+        document.getElementById(newSprintIDCode).appendChild(issueNode);
         filterIssueBySprint();
     }
 
 
     //changing to new STATUS
-    if (newStatusIndex !== 0) {        
+    if (newStatusIndex !== 0) {
         var statusOptions = selectStatusIssue.options,
                 newSelectedStatus = statusOptions[newStatusIndex].text;
         issueArray[rowIndex - 1].setIssueStatus(newSelectedStatus);
@@ -1044,7 +1016,6 @@ function updateIssueUI() {
                     tablepos++;
                 }
             }
-
             setStatusCellUpdate(newSelectedStatus, tablepos);
 
             //checking if all subisseues are resolved ---> parent issue is status changing into ready for testing
@@ -1064,7 +1035,8 @@ function updateIssueUI() {
         var update = getDate(date) + " / " + getTime(date);
         updateRow.cells[7].innerHTML = update;
 
-        //update(more like add) Comments
+
+        //ADD new Comments
         if (commentText !== "" && commentText !== " ") {
             createNewCommment(commentText, selectedUserID);
             connectComments(commentArray[commentArray.length - 1], issueArray[rowIndex - 1]);
@@ -1076,7 +1048,7 @@ function updateIssueUI() {
                 commentCell.setAttribute("onmouseenter", "showCommentsUI(this)");
                 commentCell.setAttribute("onmouseleave", "hideCommentsUI()");
             }
-        }        
+        }
     }
     resetNewIssueFormUI();
     document.getElementById("newIssueContainer").style.visibility = "hidden";
