@@ -1005,7 +1005,7 @@ function updateIssueUI() {
             var issueNode = document.getElementById(movingIssueID);
             document.getElementById(newSprintIDCode).appendChild(issueNode);
             filterIssueBySprint();
-        }else{
+        } else {
             alert("Only main issues can be moved");
         }
     }
@@ -1046,30 +1046,30 @@ function updateIssueUI() {
                     table.rows[tablepos].cells[2].setAttribute("class", "statusReadyFTest");
                 }
             }
-
-        }
-
-        // changing the update time
-        var date = new Date();
-        issueArray[rowIndex - 1].setUpdateDate(date);
-        var update = getDate(date) + " / " + getTime(date);
-        updateRow.cells[7].innerHTML = update;
-
-
-        //ADD new Comments
-        if (commentText !== "" && commentText !== " ") {
-            createNewCommment(commentText, selectedUserID);
-            connectComments(commentArray[commentArray.length - 1], issueArray[rowIndex - 1]);
-            var commentCell = updateRow.cells[4];
-            if (commentCell.innerHTML === "") {
-                commentCell.innerHTML = "Check";
-                commentCell.classList.add("commentedIssue");
-                commentCell.setAttribute("id", "commIssueID_");
-                commentCell.setAttribute("onmouseenter", "showCommentsUI(this)");
-                commentCell.setAttribute("onmouseleave", "hideCommentsUI()");
-            }
         }
     }
+
+    // changing the update time
+    var date = new Date();
+    issueArray[rowIndex - 1].setUpdateDate(date);
+    var update = getDate(date) + " / " + getTime(date);
+    updateRow.cells[7].innerHTML = update;
+
+
+    //ADD new Comments
+    if (commentText !== "" && commentText !== " ") {
+        createNewCommment(commentText, selectedUserID);
+        connectComments(commentArray[commentArray.length - 1], issueArray[rowIndex - 1]);
+        var commentCell = updateRow.cells[4];
+        if (commentCell.innerHTML === "") {
+            commentCell.innerHTML = "Check";
+            commentCell.classList.add("commentedIssue");
+            commentCell.setAttribute("id", "commIssueID_");
+            commentCell.setAttribute("onmouseenter", "showCommentsUI(this)");
+            commentCell.setAttribute("onmouseleave", "hideCommentsUI()");
+        }
+    }
+
     resetNewIssueFormUI();
     document.getElementById("newIssueContainer").style.visibility = "hidden";
 }

@@ -317,8 +317,12 @@ table {
     table-layout:fixed
 }
 
- tbody,tr { display: block; }
+ tbody,tr { display: block;}
  
+ tr{
+  height: auto; 
+  border-style: none none solid none;   
+ }
  .statusRowHidden{
      display: none;
  }
@@ -362,15 +366,15 @@ tbody{
 
  td {
     text-align: left;
-    padding: 2px;
-    height: 25px;
+    padding: 2px; 
+    min-height: 25px;
+    height:100%;
     display: flex;
     float:left;
     font-size: 11px;
     justify-content: center;
     align-items:center;
-    word-wrap: break-word;
-    border-style: none none solid none; 
+    word-wrap: break-word;   
 }
 .tableLastrow{
   border-style: none none none none; 
@@ -419,15 +423,13 @@ tbody{
         
 .issueCol{
   width: 12%; 
-  justify-content:flex-start;
-   border-style: none solid solid none;
+  justify-content:flex-start;  
 }
 
 .subIssueCol{
   width: 12%; 
   justify-content: flex-start;
   padding-left: 20px ; 
- border-style: none solid solid none;
 }
 
 .typeCol{
@@ -538,8 +540,7 @@ tbody{
 .commentContainer{
     position: absolute;   
     overflow-y: auto;
-    width: 320px;
-    max-height: 200px;
+    width: 320px;   
     margin-left: 480px;
     margin-top: 50px;
     visibility: hidden;
@@ -556,16 +557,14 @@ tbody{
      border-bottom-color: #1d90c9;        
 }
 .commColCommenter{
-    width: 30% ;
-    border-style: none none solid none; 
-    border-width: 2px;
+    width: 30% ;   
+    border-width: 2px;    
+    
 }
 .commColDescrip{
     width: 70%;
-    justify-content: flex-start;
-    border-style: none none solid solid; 
-    border-width: 2px;
-    
+    justify-content: flex-start;    
+    border-width: 2px; 
 }
 
 .show {
